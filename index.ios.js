@@ -33,7 +33,6 @@ export default class AwesomeProject extends Component {
         console.log('Sound loaded');
       }
     });
-    console.warn('ok')
 
     MusicControl.on('play', this.play)
     MusicControl.on('pause', this.pause)
