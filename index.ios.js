@@ -22,6 +22,8 @@ export default class AwesomeProject extends Component {
     this.state = { play: false }
     this.displayInfo = this.displayInfo.bind(this)
     this.play = this.play.bind(this)
+    this.playNothing = this.playNothing.bind(this)
+    this.changeCover = this.changeCover.bind(this)
     this.pause = this.pause.bind(this)
   }
   componentDidMount(){
@@ -66,6 +68,48 @@ export default class AwesomeProject extends Component {
     })
   }
 
+
+  playNothing(){
+
+    MusicControl.setNowPlaying({
+      title: 'Rock With You',
+      artwork: 'https://upload.wikimedia.org/wikipedia/en/f/f6/Off_the_wall.jpg',
+      artist: 'Michael Jackson',
+      album: 'Off The Wall',
+      genre: 'Post-disco, Rhythm and Blues, Funk, Dance-pop',
+      duration: this.whoosh.getDuration(),
+      description: 'Billie Jean is a song by American singer Michael Jackson. It is the second single from the singer\'s sixth solo album, Thriller (1982). It was written and composed by Jackson and produced by Jackson and Quincy Jones.',
+      date: '1983-01-02T00:00:00Z',
+      rating: 84
+    })
+    MusicControl.enableControl('play', false)
+    MusicControl.enableControl('pause', true)
+
+
+    this.setState({
+      play: true
+    })
+  }
+
+
+  changeCover(){
+
+    MusicControl.setNowPlaying({
+      title: 'Smooth Criminal',
+      artwork: 'https://upload.wikimedia.org/wikipedia/en/5/51/Michael_Jackson_-_Bad.png',
+      artist: 'Jackson, Michael',
+      album: 'Bad',
+      genre: 'Post-disco, Rhythm and Blues, Funk, Dance-pop',
+      duration: this.whoosh.getDuration(),
+      description: 'Billie Jean is a song by American singer Michael Jackson. It is the second single from the singer\'s sixth solo album, Thriller (1982). It was written and composed by Jackson and produced by Jackson and Quincy Jones.',
+      date: '1983-01-02T00:00:00Z',
+      rating: 84
+    })
+    MusicControl.enableControl('play', false)
+    MusicControl.enableControl('pause', true)
+
+  }
+
   pause(){
     this.whoosh.pause()
     MusicControl.enableControl('play', false)
@@ -84,12 +128,26 @@ export default class AwesomeProject extends Component {
   }
   render() {
     const label = this.state.play ? "PAUSE SONG" : "PLAY SONG"
+    const label2 = "PLAY NO AUDIO"
+    const label3 = "UPDATE INFO"
 
     return (
       <View style={styles.container}>
         <Button
           onPress={this.displayInfo}
           title={label}
+          color="#841584"
+          accessibilityLabel="Learn more about this purple button"
+        />
+        <Button
+          onPress={this.playNothing}
+          title={label2}
+          color="#841584"
+          accessibilityLabel="Learn more about this purple button"
+        />
+        <Button
+          onPress={this.changeCover}
+          title={label3}
           color="#841584"
           accessibilityLabel="Learn more about this purple button"
         />
